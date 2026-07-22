@@ -9,7 +9,7 @@ The guiding order is the [architecture-first](./Architecture.md#architecture-fir
 
 ---
 
-## Phase 0 — Foundations  *(current)*
+## Phase 0 — Foundations  *(complete — closed by [RFC-0004](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0004-phase-0-to-phase-1-transition.md)/[ADR-0007](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0007-phase-0-complete-phase-1-opened.md))*
 
 **Goal:** establish the principles, architecture, threat models, governance, and decision
 process. No production code.
@@ -19,8 +19,16 @@ process. No production code.
 - [x] Layered architecture documented end to end.
 - [x] RFC + ADR process and governance model.
 - [x] Seed RFCs (microkernel, capability model) and ADRs (Rust, RISC-V, Wasm).
-- [ ] Per-component `ARCHITECTURE.md` / `THREAT_MODEL.md` reviewed by domain stewards.
-- [ ] Open foundational RFCs (RFC-0002, RFC-0003) advanced to *Accepted*.
+- [x] Per-component `THREAT_MODEL.md` reviewed by domain stewards (all 11 components;
+      `lantern-rfcs`, `lantern-docs`, and `lantern-website` are process/docs repos and
+      own no architecture layer, hence no `ARCHITECTURE.md`/`THREAT_MODEL.md`).
+- [x] Per-component `ARCHITECTURE.md` reviewed by domain stewards (all 11 components; fixed
+      a "TCB" terminology collision in `lantern-kernel` and a missing auditability
+      invariant in `lantern-capabilities`, cross-linked ADR-0004/0005/0006).
+- [x] Open foundational RFCs (RFC-0002, RFC-0003) advanced to *Accepted* (see
+      [ADR-0004](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0004-kernel-responsibilities-and-tcb-boundary.md),
+      [ADR-0005](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0005-object-capabilities-as-universal-authority-model.md),
+      [ADR-0006](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0006-three-layer-capability-structure.md)).
 
 **Exit criteria:** the architecture is coherent, the threat model is agreed, and the open
 foundational RFCs are accepted. A new contributor can understand the *why* of the system from
@@ -28,7 +36,7 @@ the docs alone.
 
 ---
 
-## Phase 1 — Microkernel prototype
+## Phase 1 — Microkernel prototype  *(current)*
 
 **Goal:** prove the core mechanisms in throwaway/experimental code.
 
