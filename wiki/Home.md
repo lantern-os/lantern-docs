@@ -20,6 +20,7 @@ constraints.
 
 ### Foundations
 - **[Vision](./Vision.md)** — the thesis and the bet.
+- **[Intent Model](./Intent-Model.md)** — the long-term product vision built on that bet.
 - **[Principles](./Principles.md)** — six non-negotiables.
 - **[Threat Model](./Threat-Model.md)** — assets, adversaries, boundaries.
 - **[Architecture](./Architecture.md)** — the layered system.

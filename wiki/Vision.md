@@ -64,6 +64,16 @@ An operating system where:
 > not to bolt them onto a 1970s kernel — it is to design the operating system that assumes
 > them. LanternOS is that design.
 
+## Where this leads
+
+The architecture above is the foundation, not the product, and nothing about the long-term
+product direction changes it — the security and privacy bet stands as written. What it enables
+is described separately in [Intent Model](./Intent-Model.md): a user-facing experience that
+*replaces* the desktop-and-applications metaphor with intent, a Personal Agent, and Contexts,
+rather than adding an assistant on top of a conventional desktop. Keeping the two documents
+separate stops "why a new kernel" from getting conflated with "what it's eventually for," but
+both hold at once, and the current phase remains the kernel; see [Roadmap](./Roadmap.md).
+
 ## Open questions
 
 - Where exactly is the line between "principled clean slate" and "unusable because nothing
