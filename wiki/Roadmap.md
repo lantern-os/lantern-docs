@@ -36,15 +36,20 @@ the docs alone.
 
 ---
 
-## Phase 1 — Microkernel prototype  *(current)*
+## Phase 1 — Microkernel prototype  *(complete — closed by [RFC-0009](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0009-phase-1-to-phase-2-transition.md)/[ADR-0014](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0014-phase-1-complete-phase-2-opened.md))*
 
 **Goal:** prove the core mechanisms in throwaway/experimental code.
 
-- Boot to a minimal kernel on `riscv64`/x86-64 under QEMU (`lantern-boot`, `lantern-hal`).
-- Address spaces, threads, and a scheduler.
-- IPC fast-path (endpoints + notifications) with benchmarks.
-- Kernel capability mechanism (CSpace, untyped retyping) — the RFC-0003 kernel layer.
-- The "narrowing-waterfall" root task starting one trivial user-space service.
+- [x] Boot to a minimal kernel on `riscv64` under QEMU (`lantern-boot`, `lantern-hal`;
+      `x86-64` boot deferred, not blocking).
+- [x] Address spaces, threads, and a scheduler.
+- [x] IPC fast-path (endpoints + notifications) with benchmarks (see
+      [ADR-0013](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0013-ipc-latency-benchmark.md)
+      — a real, reproducible, unresolved IPC round-trip-loss bug was found and carried
+      forward as a known risk, not blocking this exit).
+- [x] Kernel capability mechanism (CSpace, untyped retyping) — the RFC-0003 kernel layer.
+- [x] The "narrowing-waterfall" root task starting one confined user-space service (see
+      [ADR-0012](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0012-vspace-frame-capabilities-and-elf-loader.md)).
 
 **Exit criteria:** a confined user-space "hello service" reachable only via a granted
 capability, with IPC latency benchmarked and within target. Prototype code is explicitly
@@ -52,7 +57,7 @@ allowed to be thrown away.
 
 ---
 
-## Phase 2 — Capability runtime & first services
+## Phase 2 — Capability runtime & first services  *(current)*
 
 **Goal:** a usable user-space ecosystem on top of the kernel.
 

@@ -48,4 +48,7 @@ constraints.
 
 ## Project status
 
-**Phase 0 — Foundations.** Architecture and documentation only. See the [Roadmap](./Roadmap.md).
+**Phase 2 — Capability runtime & first services.** Phase 1 (microkernel prototype) is
+complete, closed by [RFC-0009](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0009-phase-1-to-phase-2-transition.md)/
+[ADR-0014](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0014-phase-1-complete-phase-2-opened.md).
+See the [Roadmap](./Roadmap.md).
