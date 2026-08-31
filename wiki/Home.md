@@ -42,7 +42,7 @@ constraints.
 ## How to use this wiki
 
 - Decisions that fix a trust boundary link to an **RFC/ADR** in
-  [`lantern-rfcs`](../../lantern-rfcs). The wiki describes; the RFCs decide.
+  [`lantern-rfcs`](https://github.com/lantern-os/lantern-rfcs). The wiki describes; the RFCs decide.
 - Each page ends with **Open questions** — these are invitations to contribute.
 - If a page and a repo's `ARCHITECTURE.md` disagree, that is a bug; file an issue.
 
