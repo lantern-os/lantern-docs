@@ -96,8 +96,13 @@ capability slots return `none` and a write through a read-only handle is refused
 
 - **First:** the confined-execution port carried forward from Phase 2 — `Broker`/`Keystore`/`Store`
   as IPC-reachable confined services, and `lantern-runtime` hosted on `riscv64` via
-  Wasmtime's custom-platform hooks against `lantern-hal`/VSpace-Frame capabilities. Its own
-  RFC opens Phase 3.
+  Wasmtime's custom-platform hooks against `lantern-hal`/VSpace-Frame capabilities. Designed
+  by [RFC-0018](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0018-confined-execution-port.md)
+  (Accepted), fixed by
+  [ADR-0022](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0022-confined-service-model-and-call-transport.md)
+  (confined-service model + badged-endpoint/shared-`Frame` transport) and
+  [ADR-0023](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0023-wasmtime-no-std-pulley-hosting.md)
+  (Wasmtime `no_std` + Pulley) — neither adds anything to the TCB.
 
 - [Identity](./Identity.md): DIDs, the OS wallet service, verifiable credentials.
 - [Networking](./Networking.md): authenticated encrypted channels; P2P discovery; a first
