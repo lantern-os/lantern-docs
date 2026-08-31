@@ -44,9 +44,9 @@ the docs alone.
       `x86-64` boot deferred, not blocking).
 - [x] Address spaces, threads, and a scheduler.
 - [x] IPC fast-path (endpoints + notifications) with benchmarks (see
-      [ADR-0013](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0013-ipc-latency-benchmark.md)
-      — a real, reproducible, unresolved IPC round-trip-loss bug was found and carried
-      forward as a known risk, not blocking this exit).
+      [ADR-0013](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0013-ipc-latency-benchmark.md) — a real,
+      reproducible, unresolved IPC round-trip-loss bug was found and carried forward as a
+      known risk, not blocking this exit).
 - [x] Kernel capability mechanism (CSpace, untyped retyping) — the RFC-0003 kernel layer.
 - [x] The "narrowing-waterfall" root task starting one confined user-space service (see
       [ADR-0012](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0012-vspace-frame-capabilities-and-elf-loader.md)).
@@ -57,24 +57,48 @@ allowed to be thrown away.
 
 ---
 
-## Phase 2 — Capability runtime & first services  *(current)*
+## Phase 2 — Capability runtime & first services  *(complete — closed by [RFC-0017](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0017-phase-2-to-phase-3-transition.md)/[ADR-0021](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0021-phase-2-complete-phase-3-opened.md))*
 
 **Goal:** a usable user-space ecosystem on top of the kernel.
 
-- Service framework: badged endpoints, capability brokering (mint/grant/revoke).
-- The WASM runtime with **capability-backed WASI** (ADR-0003).
-- First real services: a content-addressed store ([Filesystem](./Filesystem.md) v0) and the
-  [crypto](./Cryptography.md) keystore.
-- The [SDK](https://github.com/lantern-os/lantern-sdk) v0 so a developer can build and run a confined Wasm app.
+- [x] Service framework: badged endpoints, capability brokering (mint/grant/revoke) —
+      [RFC-0010](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0010-cross-process-capability-transfer-and-brokering.md);
+      `lantern-capabilities`' `Broker`, proven against a real `KernelState` and under real
+      confined U-mode `ecall`s.
+- [x] The WASM runtime with **capability-backed WASI** (ADR-0003) —
+      [RFC-0013](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0013-wasm-engine-selection-and-aot-strategy.md)/[RFC-0014](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0014-wit-handle-capability-mapping.md)/[RFC-0016](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0016-filesystem-wit-interface.md):
+      the WIT-handle ⇄ capability mapping (`lantern:host/keystore`, `lantern:host/filesystem`,
+      `monotonic-clock`), deny-by-default, no ambient `wasmtime-wasi`.
+- [x] First real services: a content-addressed store ([Filesystem](./Filesystem.md) v0) and
+      the [crypto](./Cryptography.md) keystore — both exercised end to end with real
+      `Broker`-minted badges.
+- [x] The [SDK](https://github.com/lantern-os/lantern-sdk) v0 so a developer can build and run a confined Wasm app —
+      [RFC-0015](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0015-capability-manifest-format.md): the
+      `lantern.capabilities.toml` parser/validator, interface registry, WIT-`world`
+      generation, `GrantPlan`, package signing, and the `lantern-sdk build` CLI.
+- **Carried forward** ([ADR-0021](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0021-phase-2-complete-phase-3-opened.md)):
+      the services and the runtime run as in-process stand-ins on a host target, not yet as
+      confined processes on the kernel. Proven as *mechanisms*; a real IPC transport under
+      them and the Wasmtime `riscv64` custom-platform port are **Phase 3's foundational
+      prerequisite**, not a Phase 2 gap. The Phase 1 IPC round-trip-loss bug is also
+      carried forward, still.
 
 **Exit criteria:** a third-party Wasm app runs confined, reads a file *only* via a granted
 capability, and cannot touch anything it wasn't granted — demonstrated adversarially.
+**Met** — `lantern-example-signer`: packaged by `lantern-sdk build`, run by a host that
+verifies the `.lpkg` and traps everything ungranted; its `probe` export shows ungranted
+capability slots return `none` and a write through a read-only handle is refused.
 
 ---
 
-## Phase 3 — Privacy, identity, networking, and AI
+## Phase 3 — Privacy, identity, networking, and AI  *(current)*
 
 **Goal:** light up the differentiating capabilities.
+
+- **First:** the confined-execution port carried forward from Phase 2 — `Broker`/`Keystore`/`Store`
+  as IPC-reachable confined services, and `lantern-runtime` hosted on `riscv64` via
+  Wasmtime's custom-platform hooks against `lantern-hal`/VSpace-Frame capabilities. Its own
+  RFC opens Phase 3.
 
 - [Identity](./Identity.md): DIDs, the OS wallet service, verifiable credentials.
 - [Networking](./Networking.md): authenticated encrypted channels; P2P discovery; a first
@@ -120,5 +144,5 @@ has absorbed real-world use without violating its principles.
 ## How this roadmap changes
 
 Phase boundaries and their exit criteria are governed by the RFC process
-([GOVERNANCE](https://github.com/lantern-os/.github/blob/main/GOVERNANCE.md)). We would rather move a date than lower a bar: the entire
+([GOVERNANCE](../../GOVERNANCE.md)). We would rather move a date than lower a bar: the entire
 premise of LanternOS is that the foundation is worth getting right.

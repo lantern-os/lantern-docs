@@ -42,13 +42,16 @@ constraints.
 ## How to use this wiki
 
 - Decisions that fix a trust boundary link to an **RFC/ADR** in
-  [`lantern-rfcs`](https://github.com/lantern-os/lantern-rfcs). The wiki describes; the RFCs decide.
+  [`lantern-rfcs`](../../lantern-rfcs). The wiki describes; the RFCs decide.
 - Each page ends with **Open questions** — these are invitations to contribute.
 - If a page and a repo's `ARCHITECTURE.md` disagree, that is a bug; file an issue.
 
 ## Project status
 
-**Phase 2 — Capability runtime & first services.** Phase 1 (microkernel prototype) is
-complete, closed by [RFC-0009](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0009-phase-1-to-phase-2-transition.md)/
-[ADR-0014](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0014-phase-1-complete-phase-2-opened.md).
-See the [Roadmap](./Roadmap.md).
+**Phase 3 — Privacy, identity, networking, and AI.** Phase 2 (capability runtime & first
+services) is complete, closed by
+[RFC-0017](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0017-phase-2-to-phase-3-transition.md)/[ADR-0021](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0021-phase-2-complete-phase-3-opened.md):
+a third-party Wasm app runs confined and cannot touch anything it wasn't granted,
+demonstrated adversarially. Carried forward as Phase 3's first work — the services and the
+runtime run in-process on a host target, not yet confined on the kernel. See the
+[Roadmap](./Roadmap.md).
