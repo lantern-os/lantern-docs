@@ -102,7 +102,9 @@ capability slots return `none` and a write through a read-only handle is refused
   [ADR-0022](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0022-confined-service-model-and-call-transport.md)
   (confined-service model + badged-endpoint/shared-`Frame` transport) and
   [ADR-0023](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0023-wasmtime-no-std-pulley-hosting.md)
-  (Wasmtime `no_std` + Pulley) — neither adds anything to the TCB.
+  (Wasmtime `no_std` + Pulley) and
+  [ADR-0024](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0024-confined-service-call-protocol.md)
+  (the `keystore`/`store` shared-`Frame` wire protocol) — none add anything to the TCB.
 
 - [Identity](./Identity.md): DIDs, the OS wallet service, verifiable credentials.
 - [Networking](./Networking.md): authenticated encrypted channels; P2P discovery; a first
