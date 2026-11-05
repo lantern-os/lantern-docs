@@ -77,7 +77,7 @@ There is no ambient path.
 | T3 | Confused deputy: a service is tricked into misusing its authority | Designation = authority; badged endpoints; no identity-based ambient rights |
 | T4 | AI agent exceeds intent (incl. prompt injection) | Capability-scoped agents + mandatory audit log + user consent on grant ([AI](./AI.md)) |
 | T5 | Network observer links a user across services | Per-context identities; anonymity-capable transport; metadata minimisation ([Networking](./Networking.md)) |
-| T6 | Device theft exposes data | Encrypted-by-default storage tied to hardware-backed keys ([Filesystem](./Filesystem.md), [Cryptography](./Cryptography.md)) |
+| T6 | Device theft exposes data | Encrypted-by-default storage tied to hardware-backed keys ([Filesystem](./Filesystem.md), [Cryptography](./Cryptography.md)). Unmitigated until Phase 4 ([RFC-0023](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0023-hardware-key-custody-in-phase-4.md)) |
 | T7 | Boot/firmware tampering | Measured boot, root of trust, attestation ([Hardware](./Hardware.md), `lantern-boot`) |
 | T8 | Capability forgery or amplification | Kernel-enforced unforgeability; monotone attenuation; signed sealed caps |
 | T9 | Telemetry/fingerprinting leaks identity | Privacy-by-default: no global IDs built; telemetry off by default and auditable |
