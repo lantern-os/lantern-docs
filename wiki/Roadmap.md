@@ -110,12 +110,15 @@ capability slots return `none` and a write through a read-only handle is refused
 - [Networking](./Networking.md): authenticated encrypted channels; P2P discovery; a first
   anonymity-capable transport.
 - [AI runtime](./AI.md): local inference, capability-scoped agents, the audit log.
-- Encrypted-by-default storage tied to hardware-backed keys; provenance tracking.
+- Encrypted-by-default storage; provenance tracking. In this phase the keys are software-held,
+  which protects data from other confined programs but **not from theft of the device**.
+  Hardware-backed custody is Phase 4 ([RFC-0023](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0023-hardware-key-custody-in-phase-4.md)).
 - Begin **formal verification** of the IPC and capability paths.
 
 **Exit criteria:** a user can run a capable local AI agent with a visible, revocable
 capability set and a faithful audit log; a network identity can be presented without
-cross-context linkage; data at rest is encrypted and provenance-tracked.
+cross-context linkage; data at rest is encrypted (under software-held keys, until Phase 4) and
+provenance-tracked.
 
 ---
 
@@ -124,12 +127,16 @@ cross-context linkage; data at rest is encrypted and provenance-tracked.
 **Goal:** move toward the open-hardware and high-assurance vision.
 
 - Run on real RISC-V hardware; IOMMU-confined drivers.
-- Integrate a secure enclave for key custody and attestation; measured boot end to end.
+- **Hardware-backed key custody**, moved here from Phase 3 and not to be dropped: integrate a
+  secure enclave for key custody and attestation, with a per-device root key and hardware-seeded
+  randomness; measured boot end to end. The RFC opening this phase must account for every item in
+  [RFC-0023's checklist](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0023-hardware-key-custody-in-phase-4.md#the-phase-4-checklist).
 - Explore CHERI/hardware-capability backing of the software capability model.
 - Extend formal verification coverage; harden against side channels where the ISA allows.
 
-**Exit criteria:** the system runs on auditable hardware with a hardware root of trust, and
-the most critical kernel paths have machine-checked proofs.
+**Exit criteria:** the system runs on auditable hardware with a hardware root of trust holding
+every key; device theft yields only ciphertext; the revocation and audit logs resist tampering and
+rollback; and the most critical kernel paths have machine-checked proofs.
 
 ---
 
