@@ -154,6 +154,27 @@ has absorbed real-world use without violating its principles.
 
 ---
 
+## Track: toward an installable system
+
+**Goal:** an OS a person can install and run, in a VM or on hardware. This track runs alongside the phases and changes no
+phase's exit criteria. Added by [RFC-0026](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0026-trusted-path-and-consent.md)/[ADR-0032](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0032-trusted-path-and-consent.md).
+Each step needs its own RFC.
+
+1. [x] **An interactive system image**: `lantern-boot-system`. A person decides each grant at a console only the shell can
+   reach ([RFC-0026](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0026-trusted-path-and-consent.md)).
+2. [x] **Interrupts, a preemption timer and an idle loop**
+   ([RFC-0027](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0027-interrupt-delivery-timer-and-idle.md)). User-space timeouts are the follow-up.
+3. [ ] **Launching from user space**: a confined launcher that starts programs from packages after boot, so a person can run
+   an app at the console. Today only boot code creates a program.
+4. [ ] **Storage**: a confined virtio-blk driver, with the encrypted store and packages on a disk image instead of inside the
+   boot image.
+5. [ ] **Installing**: a bootable disk image that a VM boots directly, and an install flow that writes one.
+6. [ ] **Real hardware**: Phase 4's RISC-V board work, with [RFC-0023](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0023-hardware-key-custody-in-phase-4.md)'s checklist.
+
+`x86-64` boot stays deferred; QEMU's `riscv64 virt` is the VM target until a decision says otherwise.
+
+---
+
 ## How this roadmap changes
 
 Phase boundaries and their exit criteria are governed by the RFC process
