@@ -163,7 +163,9 @@ Each step needs its own RFC.
 1. [x] **An interactive system image**: `lantern-boot-system`. A person decides each grant at a console only the shell can
    reach ([RFC-0026](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0026-trusted-path-and-consent.md)).
 2. [x] **Interrupts, a preemption timer and an idle loop**
-   ([RFC-0027](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0027-interrupt-delivery-timer-and-idle.md)). User-space timeouts are the follow-up.
+   ([RFC-0027](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0027-interrupt-delivery-timer-and-idle.md)), and **user-space deadlines with a
+   capability-gated clock** ([RFC-0028](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0028-deadlines-and-a-capability-clock.md)). A consent request
+   nobody answers is declined after 60 seconds.
 3. [ ] **Launching from user space**: a confined launcher that starts programs from packages after boot, so a person can run
    an app at the console. Today only boot code creates a program.
 4. [ ] **Storage**: a confined virtio-blk driver, with the encrypted store and packages on a disk image instead of inside the
