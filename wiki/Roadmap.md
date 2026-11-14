@@ -166,10 +166,10 @@ Each step needs its own RFC.
    ([RFC-0027](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0027-interrupt-delivery-timer-and-idle.md)), and **user-space deadlines with a
    capability-gated clock** ([RFC-0028](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0028-deadlines-and-a-capability-clock.md)). A consent request
    nobody answers is declined after 60 seconds.
-3. [ ] **Launching from user space**: a confined launcher that starts programs from packages after boot, so a person can run
-   an app at the console ([RFC-0029](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0029-a-confined-launcher.md)). Its prerequisite is done:
-   processes built, contained and reclaimed from user space
-   ([RFC-0030](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0030-process-lifecycle-faults-and-reclamation.md)).
+3. [x] **Launching from user space**: `apps` and `run NAME` at the console start an app from a signed package after boot,
+   up to 4 at once, each reclaimed when it ends ([RFC-0029](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0029-a-confined-launcher.md), built on
+   processes made, contained and reclaimed from user space,
+   [RFC-0030](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0030-process-lifecycle-faults-and-reclamation.md)).
 4. [ ] **Storage**: a confined virtio-blk driver, with the encrypted store and packages on a disk image instead of inside the
    boot image.
 5. [ ] **Installing**: a bootable disk image that a VM boots directly, and an install flow that writes one.
