@@ -170,9 +170,12 @@ Each step needs its own RFC.
    up to 4 at once, each reclaimed when it ends ([RFC-0029](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0029-a-confined-launcher.md), built on
    processes made, contained and reclaimed from user space,
    [RFC-0030](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0030-process-lifecycle-faults-and-reclamation.md)).
-4. [ ] **Storage**: a confined virtio-blk driver, with the encrypted store and packages on a disk image instead of inside the
-   boot image.
-5. [ ] **Installing**: a bootable disk image that a VM boots directly, and an install flow that writes one.
+4. [x] **Storage**: a confined virtio-blk driver and a volume service; the packages, and the sealed store, on a GPT disk
+   image instead of inside the boot image, so files outlive a reboot
+   ([RFC-0031](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0031-storage-a-block-driver-and-the-store-on-disk.md)).
+5. [x] **Installing**: a bootable disk image a VM boots directly, through UEFI and a Lantern EFI loader, with the policy
+   store, packages and files on it; installing is writing that image
+   ([RFC-0032](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0032-installing-a-bootable-disk.md)). An installer inside LanternOS is future work.
 6. [ ] **Real hardware**: Phase 4's RISC-V board work, with [RFC-0023](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0023-hardware-key-custody-in-phase-4.md)'s checklist.
 
 `x86-64` boot stays deferred; QEMU's `riscv64 virt` is the VM target until a decision says otherwise.
