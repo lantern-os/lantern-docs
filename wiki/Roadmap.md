@@ -90,7 +90,7 @@ capability slots return `none` and a write through a read-only handle is refused
 
 ---
 
-## Phase 3 — Privacy, identity, networking, and AI  *(current)*
+## Phase 3 — Privacy, identity, networking, and AI  *(complete — closed by [RFC-0036](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0036-phase-3-to-phase-4-transition.md)/[ADR-0041](https://github.com/lantern-os/lantern-rfcs/blob/main/adr/0041-phase-3-complete-phase-4-opened.md))*
 
 **Goal:** light up the differentiating capabilities.
 
@@ -135,9 +135,12 @@ Progress on them:
   independent Noise implementation, can't link them ([RFC-0035](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0035-pairwise-network-identities.md)).
   What links them today is the network itself: one address, and timing. An anonymity transport is future work.
 
+Carried forward by RFC-0036: **formal verification**, never started here, is Phase 4's first work. DIDs and credentials,
+peer discovery and an anonymity transport continue alongside Phase 4.
+
 ---
 
-## Phase 4 — Hardware and assurance
+## Phase 4 — Hardware and assurance  *(current)*
 
 **Goal:** move toward the open-hardware and high-assurance vision.
 
@@ -148,6 +151,21 @@ Progress on them:
   [RFC-0023's checklist](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0023-hardware-key-custody-in-phase-4.md#the-phase-4-checklist).
 - Explore CHERI/hardware-capability backing of the software capability model.
 - Extend formal verification coverage; harden against side channels where the ISA allows.
+
+**Opened by RFC-0036**, which accounts for every item in RFC-0023's checklist, each with a work stream. In order:
+
+1. [ ] **Formal verification** of the capability and IPC paths: an RFC choosing the tool and the first properties. Needs
+   no hardware.
+2. [ ] The hardware-independent parts of rollback resistance (keyed policy and decision logs, signed audit headers and
+   retirements) and of signed models.
+3. [ ] **Board bring-up** (the installable track's step 6), then the root of trust, custody, measured and secure boot,
+   and IOMMU-confined drivers, as far as the board allows.
+
+**Minimum hardware** (RFC-0036), in two tiers:
+
+- **To run:** RV64GC with Sv39, a PLIC or AIA, an SBI timer, a device tree, and storage the system can drive.
+- **To exit this phase:** additionally an IOMMU over every DMA-capable device, an entropy source (`Zkr` or a hardware
+  generator), and a root of trust that holds keys and a monotonic counter.
 
 **Exit criteria:** the system runs on auditable hardware with a hardware root of trust holding
 every key; device theft yields only ciphertext; the revocation and audit logs resist tampering and
