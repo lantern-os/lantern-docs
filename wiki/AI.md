@@ -7,6 +7,15 @@ cloud API bolted on top. LanternOS treats **local inference, model management, a
 agency** as OS services — so that AI can be powerful *and* private *and* under the user's
 explicit control. Repository: [`lantern-ai-runtime`](https://github.com/lantern-os/lantern-ai-runtime).
 
+## Today
+
+[RFC-0034](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0034-local-inference-and-a-file-assistant.md) built the first of it. A small language
+model (TinyStories `stories15M`, int8) runs on the CPU in a confined inference service, read from its own disk partition
+and checked against the digest the system was built with. The file assistant, an ordinary signed app, reads a file a
+person wrote, asks the model to continue it, and writes the result to a second file. It holds three capabilities, each
+asked for at the console, listed by `grants`, revocable, and in the audit log with every use, including which model ran.
+`files` shows the result as written by the file assistant. Under emulation on a laptop, 64 tokens take about 2 seconds.
+
 ## The three jobs of the AI runtime
 
 1. **Local inference.** Run models on-device using the CPU and available accelerators

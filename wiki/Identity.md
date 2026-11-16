@@ -5,6 +5,14 @@ in an account on someone else's server. Identity is a first-class OS concern, bu
 crypto service. Related repositories: [`lantern-crypto`](https://github.com/lantern-os/lantern-crypto) (custody and
 primitives) and the identity service that lives alongside the system services.
 
+## Today
+
+[RFC-0035](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0035-pairwise-network-identities.md) built the first of it. The wallet is a confined
+OS service holding one secret root, made from real randomness and kept sealed on the disk. For each app and each peer it
+derives a separate identity, an X25519 key no other context's key can be linked to, and presents it over an encrypted
+Noise session. Apps hold a capability for a peer, which a person grants at the console, never a key. `identities` shows
+which app presented which identity to whom. DIDs, credentials and recovery are still to come.
+
 ## Principles applied
 
 - **Self-sovereign.** Identity is a key pair (and its derivations) the user holds, not a
