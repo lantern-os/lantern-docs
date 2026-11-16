@@ -5,6 +5,12 @@ treated as fully hostile (see [Threat Model](./Threat-Model.md)), and the user â
 platform, or central server â€” controls how they appear on it. Repository:
 [`lantern-network`](https://github.com/lantern-os/lantern-network).
 
+## Today
+
+[RFC-0035](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0035-pairwise-network-identities.md) built a first, small stack: a virtio-net driver
+that parses nothing, and a confined IPv4/UDP service that holds no key. The wallet runs Noise `XX` sessions over it, as a
+different identity for each app and peer. Keys can't link two contexts; the network still can, by address and timing.
+
 ## Stance
 
 - **The network is untrusted.** Confidentiality, integrity, and authenticity are

@@ -120,6 +120,21 @@ capability set and a faithful audit log; a network identity can be presented wit
 cross-context linkage; data at rest is encrypted (under software-held keys, until Phase 4) and
 provenance-tracked.
 
+Progress on them:
+
+- [x] **Data at rest encrypted and provenance-tracked:** the store's files are sealed on the disk
+  ([RFC-0031](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0031-storage-a-block-driver-and-the-store-on-disk.md)), and each keeps which apps
+  wrote it ([RFC-0033](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0033-provenance-for-data-at-rest.md)).
+- [x] **A local AI agent:** a confined inference service runs a language model behind a capability, and the file
+  assistant, an ordinary app, continues a person's text with it: each of its three capabilities asked for, listed,
+  revocable and audited, and its output recorded as its own
+  ([RFC-0034](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0034-local-inference-and-a-file-assistant.md)). The model is small (15M
+  parameters): the interface is what a larger one, or an accelerator, will sit behind.
+- [x] **A network identity without cross-context linkage:** the wallet presents each app a different identity per peer,
+  derived from a root only it holds, over a Noise session through a confined UDP stack; the peers, checking with an
+  independent Noise implementation, can't link them ([RFC-0035](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0035-pairwise-network-identities.md)).
+  What links them today is the network itself: one address, and timing. An anonymity transport is future work.
+
 ---
 
 ## Phase 4 — Hardware and assurance
