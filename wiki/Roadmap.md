@@ -154,8 +154,10 @@ peer discovery and an anonymity transport continue alongside Phase 4.
 
 **Opened by RFC-0036**, which accounts for every item in RFC-0023's checklist, each with a work stream. In order:
 
-1. [ ] **Formal verification** of the capability and IPC paths: an RFC choosing the tool and the first properties. Needs
-   no hardware.
+1. [x] **Formal verification** of the capability and IPC paths: Kani proves nine properties of every system call and
+   trap within stated bounds, and found three kernel bugs on the way
+   ([RFC-0037](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0037-formal-verification-first-properties.md)). Whether bounded proofs meet this
+   phase's exit criterion is for the exit RFC.
 2. [ ] The hardware-independent parts of rollback resistance (keyed policy and decision logs, signed audit headers and
    retirements) and of signed models.
 3. [ ] **Board bring-up** (the installable track's step 6), then the root of trust, custody, measured and secure boot,
