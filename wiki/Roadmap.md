@@ -158,8 +158,10 @@ peer discovery and an anonymity transport continue alongside Phase 4.
    trap within stated bounds, and found three kernel bugs on the way
    ([RFC-0037](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0037-formal-verification-first-properties.md)). Whether bounded proofs meet this
    phase's exit criterion is for the exit RFC.
-2. [ ] The hardware-independent parts of rollback resistance (keyed policy and decision logs, signed audit headers and
-   retirements) and of signed models.
+2. [x] The hardware-independent parts: models as signed packages, trusted like apps, and audit history exported to a
+   sealed archive before it's retired, with any loss recorded
+   ([RFC-0038](https://github.com/lantern-os/lantern-rfcs/blob/main/rfcs/0038-signed-models-and-kept-audit-history.md)). Keying the logs waits for a
+   hardware secret: without one it would protect nothing against someone with the disk.
 3. [ ] **Board bring-up** (the installable track's step 6), then the root of trust, custody, measured and secure boot,
    and IOMMU-confined drivers, as far as the board allows.
 
